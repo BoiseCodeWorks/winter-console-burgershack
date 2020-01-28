@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using burgershack.Controllers;
 using burgershack.Interfaces;
 using burgershack.Models;
 
@@ -10,17 +11,21 @@ namespace burgershack
         static void Main(string[] args)
         {
 
-            List<ILight> lightSources = new List<ILight>(){
-            new Mushroom(),
-            new ScentedCandle(),
-            new WaxCandle()
-            };
+            // List<ILight> lightSources = new List<ILight>(){
+            // new Mushroom(),
+            // new ScentedCandle(),
+            // new WaxCandle()
+            // };
 
 
-            foreach (var light in lightSources)
-            {
-                light.Illuminate();
-            }
+            // foreach (var light in lightSources)
+            // {
+            //     light.Illuminate();
+            // }
+
+            Console.Clear();
+            BurgershackController bc = new BurgershackController();
+            bc.Run();
         }
 
     }
