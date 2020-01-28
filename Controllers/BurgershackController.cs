@@ -3,7 +3,7 @@ using burgershack.Services;
 
 namespace burgershack.Controllers
 {
-    public class BurgershackController
+    class BurgershackController
     {
         private BurgershackService Service { get; set; } = new BurgershackService();
         private bool _running = true;
@@ -31,11 +31,44 @@ namespace burgershack.Controllers
                 case 'q':
                     _running = false;
                     break;
+                case 'n':
+                    MakeBurger();
+                    break;
                 default:
                     System.Console.WriteLine("Invalid command");
                     Service.PrintMenu();
                     break;
             }
+        }
+
+        private void MakeBurger()
+        {
+            Console.Clear();
+            Console.WriteLine("Making New Burger, please complete the following...");
+            //name
+            Console.Write("Burger Name: ");
+            string name = Console.ReadLine();
+            Console.WriteLine("");
+            //ingredients
+            Console.Write("Ingredients (comma seperated): ");
+            string[] ingredients = Console.ReadLine().Split(",");
+            Console.WriteLine("");
+            //Price
+            Console.Write("Price: ");
+            string stringPrice = Console.ReadLine(); //will have to parse
+            Console.WriteLine("");
+            //KCals
+            Console.WriteLine("KCals: ");
+            string stringKCals = Console.ReadLine();
+
+            Console.Clear();
+
+            if (float.TryParse(stringPrice, out float price) && int.TryParse(stringKCals, out int kCals))
+            {
+                Service.MakeBurger(name, ingredients, price, kCals);
+                return;
+            }
+            System.Console.WriteLine("Invalid burger information (please try again)");
         }
 
         private void PrintMessages()

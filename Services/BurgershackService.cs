@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using burgershack.Models;
 
@@ -13,12 +14,21 @@ namespace burgershack.Services
         public void PrintMenu()
         {
             Messages.Add("----Menu----");
+            int index = 1;
             foreach (var item in Shack.Menu)
             {
-                Messages.Add(item.GetMenuLineItem());
+                Messages.Add(index.ToString() + ") " + item.GetMenuLineItem());
+                index++;
             }
             Messages.Add("press (o) to order or (n) to add a new item or (q) to quit");
         }
 
+        public void MakeBurger(string name, string[] ingredients, float price, int kCals)
+        {
+            Burger newBurger = new Burger(name, ingredients, price, kCals);
+            Shack.Menu.Add(newBurger);
+            Messages.Add($"Successfully made {name}");
+            PrintMenu();
+        }
     }
 }

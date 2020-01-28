@@ -6,7 +6,9 @@ namespace burgershack.Models
 {
     class Shack
     {
+        public List<User> Users;
         public List<IMenuItem> Menu { get; set; } = new List<IMenuItem>();
+        public List<Order> Orders { get; set; } = new List<IMenuItem>();
         private void Setup()
         {
             //create all the things
